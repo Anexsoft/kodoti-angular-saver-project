@@ -1,0 +1,49 @@
+const LoremIpsum = require("lorem-ipsum").LoremIpsum;
+const { v4: uuidv4 } = require('uuid');
+
+const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+        max: 8,
+        min: 4
+    },
+    wordsPerSentence: {
+        max: 16,
+        min: 4
+    }
+});
+
+let database = {
+    users: [
+        { id: "ec954c0f-d9aa-4d4f-b90c-65d44ea52423", email: "admin@kodoti.com", name: "Eduardo", password: "123456", "token": null },
+        { id: "4524edee-01ce-4ac7-8c4e-b43ba361d985", email: "test@kodoti.com", name: "Juancho", password: "123456", "token": null }
+    ],
+    outcomes: []
+};
+
+seeder(database);
+
+function seeder() {
+    let now = new Date(),
+        year = now.getFullYear();
+
+    for (let month = 0; month < now.getMonth() + 1; month++) {
+        for (let day = 1; day <= now.getDate(); day++) {
+            let hour = Math.floor(Math.random() * 24) + 1,
+                minute = Math.floor(Math.random() * 59) + 1,
+                second = Math.floor(Math.random() * 59) + 1,
+                created_at = new Date(year, month, day, hour, minute, second),
+                user = database.users[Math.floor(Math.random() * database.users.length)];
+
+            database.outcomes.push({
+                id: uuidv4(),
+                created_at: created_at,
+                updated_at: null,
+                detail: lorem.generateWords(4),
+                amount: Math.floor(Math.random() * 250) + 1,
+                userId: user.id
+            });
+        }
+    }
+}
+
+module.exports = database;
