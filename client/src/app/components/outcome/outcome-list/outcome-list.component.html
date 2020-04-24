@@ -1,0 +1,39 @@
+<div class="columns is-vcentered">
+    <div class="column">
+        <h1 class="title">US$ 200.00</h1>
+        <h2 class="subtitle">El total de los pagos registrados para este periodo.</h2>
+    </div>
+    <div class="column has-text-right">
+        <a [routerLink]="['create']" class="button is-primary is-medium">Registrar un nuevo gasto</a>
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column">
+        <div class="select is-fullwidth is-medium">
+            <select>
+                <option>-- Seleccione un mes --</option>
+            </select>
+        </div>
+    </div>
+    <div class="column">
+        <div class="select is-fullwidth is-medium">
+            <select>
+                <option>-- Seleccione un año --</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="columns is-multiline">
+    <div class="column is-4">
+        <div class="box">
+            <a class="delete is-pulled-right"></a>
+            <div class="title is-size-4">US$ 24.00</div>
+            <div class="subtitle is-size-5">
+                <a [routerLink]="['1/update']" >Comida para mi lorito</a>
+            </div>
+            <div class="has-text-grey">VIE. 24 ABR</div>
+        </div>
+    </div>
+</div>

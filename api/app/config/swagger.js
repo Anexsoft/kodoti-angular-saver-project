@@ -7,7 +7,8 @@ module.exports = (app) => {
         info: {
             title: 'KODOTI Saver',
             version: '1.0.0',
-            description: 'API desarrollada para el curso de angular',
+            description: 'API desarrollada para el curso de Angular.',
+            courseUrl: "https://kodoti.com/cursos/angular-desde-cero"
         },
         basePath: '/',
     };
