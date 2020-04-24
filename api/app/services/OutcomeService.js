@@ -4,7 +4,7 @@ const db = require('../db/database'),
 class OutcomeService {
     getAll(userId, year, month) {
         return db.outcomes.filter(
-            x => x.userId === userId
+            x => x.user_id === userId
                 && x.created_at.getMonth() + 1 == month
                 && x.created_at.getFullYear() == year
         );

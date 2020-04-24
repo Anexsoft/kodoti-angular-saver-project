@@ -40,7 +40,7 @@ function seeder() {
                 updated_at: null,
                 detail: lorem.generateWords(4),
                 amount: Math.floor(Math.random() * 250) + 1,
-                userId: user.id
+                user_id: user.id
             });
         }
     }

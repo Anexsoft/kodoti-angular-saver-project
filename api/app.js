@@ -1,7 +1,8 @@
 const dotenv = require('dotenv'),
     express = require('express'),
     cors = require('cors'),
-    routes = require('./app/routes');
+    router = require('./app/config/router'),
+    swagger = require('./app/config/swagger');
 
 // read from .env
 dotenv.config();
@@ -15,8 +16,11 @@ app.use(cors());
 // add json
 app.use(express.json());
 
+// add swagger
+swagger(app);
+
 // add routes
-routes(app);
+router(app);
 
 app.listen(process.env.PORT, () => {
     console.log('Running on port:' + process.env.PORT);
