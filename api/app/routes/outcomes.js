@@ -49,6 +49,8 @@ module.exports = function (app) {
      * @swagger
      * /outcomes:
      *   get:
+     *     tags:
+     *       - Outcomes
      *     produces:
      *       - application/json
      *     parameters:
@@ -84,6 +86,8 @@ module.exports = function (app) {
      * @swagger
      * /outcomes/{id}:
      *   get:
+     *     tags:
+     *       - Outcomes
      *     produces:
      *       - application/json
      *     parameters:
@@ -110,6 +114,8 @@ module.exports = function (app) {
      * @swagger
      * /outcomes:
      *   post:
+     *     tags:
+     *       - Outcomes
      *     produces:
      *       - application/json
      *     parameters:
@@ -132,6 +138,8 @@ module.exports = function (app) {
      * @swagger
      * /outcomes/{id}:
      *   put:
+     *     tags:
+     *       - Outcomes
      *     produces:
      *       - application/json
      *     parameters:
@@ -156,6 +164,8 @@ module.exports = function (app) {
      * @swagger
      * /outcomes/{id}:
      *   delete:
+     *     tags:
+     *       - Outcomes
      *     produces:
      *       - application/json
      *     parameters:

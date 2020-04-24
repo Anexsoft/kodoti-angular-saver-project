@@ -4,6 +4,19 @@ const identityService = require('../services/IdentityService'),
 /**
  * @swagger
  * definitions:
+ *   User:
+ *     properties:
+ *       id:
+ *         type: string
+ *       name:
+ *         type: string
+ *       email:
+ *         type: string
+ */
+
+/**
+ * @swagger
+ * definitions:
  *   SignIn:
  *     properties:
  *       email:
@@ -20,7 +33,7 @@ const identityService = require('../services/IdentityService'),
  *       access_token:
  *         type: string
  *       user:
- *         type: array
+ *         $ref: '#/definitions/User'
  */
 
 module.exports = function (app) {
@@ -28,6 +41,8 @@ module.exports = function (app) {
      * @swagger
      * /sign-in:
      *   post:
+     *     tags:
+     *       - Auth
      *     produces:
      *       - application/json
      *     parameters:
