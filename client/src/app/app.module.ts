@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +12,7 @@ import { OutcomeCreateComponent } from './components/outcome/outcome-create/outc
 import { OutcomeUpdateComponent } from './components/outcome/outcome-update/outcome-update.component';
 import { HeaderComponent } from './shareds/header/header.component';
 import { FooterComponent } from './shareds/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,14 @@ import { FooterComponent } from './shareds/footer/footer.component';
     OutcomeCreateComponent,
     OutcomeUpdateComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
