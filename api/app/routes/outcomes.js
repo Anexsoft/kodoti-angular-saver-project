@@ -20,29 +20,38 @@ auth = require('../middlewares/auth');
  *         type: string
  */
 
- /**
+/**
  * @swagger
  * definitions:
- *   OutcomeCreate:
- *     properties:
- *       detail:
- *         type: string
- *       amount:
- *         type: number
- *       user_id:
- *         type: string
+ *   ArrayOfOutcome:
+ *     type: array
+ *     items:
+ *       $ref: '#/definitions/Outcome'
  */
 
- /**
- * @swagger
- * definitions:
- *   OutcomeUpdate:
- *     properties:
- *       detail:
- *         type: string
- *       amount:
- *         type: number
- */
+/**
+* @swagger
+* definitions:
+*   OutcomeCreate:
+*     properties:
+*       detail:
+*         type: string
+*       amount:
+*         type: number
+*       user_id:
+*         type: string
+*/
+
+/**
+* @swagger
+* definitions:
+*   OutcomeUpdate:
+*     properties:
+*       detail:
+*         type: string
+*       amount:
+*         type: number
+*/
 
 module.exports = function (app) {
     /**
@@ -66,13 +75,14 @@ module.exports = function (app) {
      *     responses:
      *       200:
      *         schema:
-     *           $ref: '#/definitions/Outcome'
+     *           type: array
+     *           $ref: '#/definitions/ArrayOfOutcome'
      *           
      */
     app.get('/outcomes', auth, (req, res) => {
         let year = req.query.year || null;
         let month = req.query.month || null;
-        let userId = req.query.userId || null;
+        let userId = req.query.user_id || null;
 
         if (!year || !month || !userId) {
             res.status(400).send('Invalid parameters.');
@@ -103,7 +113,7 @@ module.exports = function (app) {
     app.get('/outcomes/:id', (req, res) => {
         let entry = outcomeService.find(req.params.id);
 
-        if(!entry) {
+        if (!entry) {
             res.status(404).send();
         }
 

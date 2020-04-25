@@ -17,7 +17,7 @@ class OutcomeService {
     create(obj) {
         let entry = {
             "id": uuidv4(),
-            "userId": obj.userId,
+            "user_id": obj.user_id,
             "created_at": new Date(),
             "updated_at": null,
             "detail": obj.detail,
@@ -30,11 +30,13 @@ class OutcomeService {
     }
 
     update(id, obj) {
-        let entry = db.outcomes.find(x => id === id);
-
-        entry.updated_at = new Date();
-        entry.detail = obj.detail;
-        entry.amount = obj.amount;
+        db.outcomes.forEach(entry => {
+            if (entry.id === id) {
+                entry.updated_at = new Date();
+                entry.detail = obj.detail;
+                entry.amount = obj.amount;
+            }
+        });
     }
 
     remove(id) {

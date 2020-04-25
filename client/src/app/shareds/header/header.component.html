@@ -16,7 +16,7 @@
                     <a [routerLink]="['/outcomes']" class="navbar-item">
                         Gastos
                     </a>
-                    <a class="navbar-item">
+                    <a (click)="signOut()" class="navbar-item">
                         Desconectarse
                     </a>
                 </div>

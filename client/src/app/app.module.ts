@@ -1,10 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 
+// Culture
+import localEsPe from '@angular/common/locales/es-PE';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localEsPe);
+
+// Interceptors
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 import { AppRoutingModule } from './app-routing.module';
+
+// Components
 import { AppComponent } from './app.component';
 import { DefaultComponent } from './components/default/default.component';
 import { OutcomeListComponent } from './components/outcome/outcome-list/outcome-list.component';
@@ -13,6 +24,8 @@ import { OutcomeUpdateComponent } from './components/outcome/outcome-update/outc
 import { HeaderComponent } from './shareds/header/header.component';
 import { FooterComponent } from './shareds/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { OutcomeDetailComponent } from './components/outcome/outcome-list/outcome-detail/outcome-detail.component';
+import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +36,8 @@ import { LoginComponent } from './components/login/login.component';
     OutcomeUpdateComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    OutcomeDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +45,12 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-PE' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'PEN' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

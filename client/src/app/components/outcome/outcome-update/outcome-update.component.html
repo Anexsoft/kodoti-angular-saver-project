@@ -1,1 +1,46 @@
-<p>outcome-update works!</p>
+<h1 class="title">Actualizar un gasto</h1>
+<h2 class="subtitle">Desde aquí podrá actualizar la información del gasto.</h2>
+
+<div *ngIf="loading" class="has-text-centered is-size-3">
+    -- procesando --
+</div>
+
+<form *ngIf="!loading" (ngSubmit)="onSubmit()" #outcomeForm="ngForm">
+    <div class="field">
+        <label class="label">Monto</label>
+        <div class="control">
+            <input [class.is-danger]="amount.invalid && amount.dirty"
+                [class.is-success]="!amount.invalid && amount.dirty" [(ngModel)]="model.amount" #amount="ngModel"
+                required minlength="1" name="amount" class="input" type="number" placeholder="Ingrese el monto">
+        </div>
+
+        <ng-container *ngIf="amount.invalid && amount.dirty">
+            <span *ngIf="amount.errors.required" class="help is-danger">El monto no puede ser nulo.</span>
+            <span *ngIf="amount.errors.minlength" class="help is-danger">Debe ingresar como mínimo el valor 1.</span>
+        </ng-container>
+    </div>
+
+    <div class="field">
+        <label class="label">Detalle</label>
+        <div class="control">
+            <input [class.is-danger]="detail.invalid && detail.dirty"
+                [class.is-success]="!detail.invalid && detail.dirty" [(ngModel)]="model.detail" #detail="ngModel"
+                required minlength="10" name="detail" class="input" type="text"
+                placeholder="Ingrese el sustento del gasto">
+        </div>
+
+        <ng-container *ngIf="detail.invalid && detail.dirty">
+            <span *ngIf="detail.errors.required" class="help is-danger">El detalle no puede ser nulo.</span>
+            <span *ngIf="detail.errors.minlength" class="help is-danger">Debe ingresar como mínimo 10 caracteres.</span>
+        </ng-container>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button [disabled]="!outcomeForm.form.valid" class="button is-link is-medium">Guardar</button>
+        </div>
+        <div class="control">
+            <a routerLink="/outcomes" class="button is-link is-light is-medium">Volver</a>
+        </div>
+    </div>
+</form>

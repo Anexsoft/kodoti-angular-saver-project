@@ -5,11 +5,13 @@ import { OutcomeListComponent } from './components/outcome/outcome-list/outcome-
 import { OutcomeCreateComponent } from './components/outcome/outcome-create/outcome-create.component';
 import { OutcomeUpdateComponent } from './components/outcome/outcome-update/outcome-update.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: DefaultComponent },
+  { path: '', component: DefaultComponent, canActivate: [AuthGuard] },
   {
     path: 'outcomes',
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: OutcomeListComponent },
       { path: 'create', component: OutcomeCreateComponent },

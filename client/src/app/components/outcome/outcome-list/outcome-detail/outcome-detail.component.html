@@ -1,0 +1,8 @@
+<div class="box">
+    <a (click)="delete()" class="delete is-pulled-right"></a>
+    <div class="title is-size-4">{{model.amount|currency}}</div>
+    <div class="subtitle is-size-5">
+        <a [routerLink]="[model.id + '/update']">{{model.detail}}</a>
+    </div>
+    <div class="has-text-grey">{{model.created_at|date:'E dd hh:mma'|uppercase}}</div>
+</div>
