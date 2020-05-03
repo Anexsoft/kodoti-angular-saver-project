@@ -79,7 +79,7 @@ module.exports = function (app) {
      *           $ref: '#/definitions/ArrayOfOutcome'
      *           
      */
-    app.get('/outcomes', auth, (req, res) => {
+    app.get('/outcomes', (req, res) => {
         let year = req.query.year || null;
         let month = req.query.month || null;
         let userId = req.query.user_id || null;

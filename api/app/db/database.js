@@ -26,22 +26,31 @@ function seeder() {
     let now = new Date(),
         year = now.getFullYear();
 
-    for (let month = 0; month < now.getMonth() + 1; month++) {
-        for (let day = 1; day <= now.getDate(); day++) {
-            let hour = Math.floor(Math.random() * 24) + 1,
-                minute = Math.floor(Math.random() * 59) + 1,
-                second = Math.floor(Math.random() * 59) + 1,
-                created_at = new Date(year, month, day, hour, minute, second),
-                user = database.users[Math.floor(Math.random() * database.users.length)];
+    let getDaysInMonth = (year, month) => {
+        return new Date(year, month + 1, 0).getDate();
+    };
 
-            database.outcomes.push({
-                id: uuidv4(),
-                created_at: created_at,
-                updated_at: null,
-                detail: lorem.generateWords(4),
-                amount: Math.floor(Math.random() * 250) + 1,
-                user_id: user.id
+    for (let month = 0; month <= now.getMonth(); month++) {
+        for (let day = 1; day <= getDaysInMonth(year, month); day++) {
+            database.users.forEach(user => {
+                let hour = Math.floor(Math.random() * 24) + 1,
+                    minute = Math.floor(Math.random() * 59) + 1,
+                    second = Math.floor(Math.random() * 59) + 1,
+                    created_at = new Date(year, month, day, hour, minute, second);
+
+                database.outcomes.push({
+                    id: uuidv4(),
+                    created_at: created_at,
+                    updated_at: null,
+                    detail: lorem.generateWords(4),
+                    amount: Math.floor(Math.random() * 250) + 1,
+                    user_id: user.id
+                });
             });
+
+            if (month === now.getMonth() && day === now.getDate()) {
+                break;
+            }
         }
     }
 }
