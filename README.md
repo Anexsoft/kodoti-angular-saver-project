@@ -42,4 +42,4 @@ ng serve
 ## ¿Dónde puedo aprender más sobre este proyecto?
 Tenemos un curso completo donde enseñamos como desarrollar este proyecto y te adentramos al mundo de **Angular 9+**.
 
-[https://kodoti.com/cursos/angular-desde-cero](https://kodoti.com/cursos/angular-desde-cero)
+https://www.udemy.com/course/draft/3425260/?referralCode=542898959FF2DB0B6945
